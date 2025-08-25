@@ -1,36 +1,20 @@
-from flask import Flask, request, render_template
+# app.py
+import streamlit as st
 import pickle
 import numpy as np
 
-application = Flask(__name__)
-app = application
-
-# Load your model
-ridge_model1 = pickle.load(open('model/ridge_model.pkl', 'rb'))
-
-@app.route("/", methods=['GET', 'POST'])
-def predict_datapoint():
-    if request.method == "POST":
-        # collect form inputs
-        size_m2 = float(request.form.get('size_m2'))
-        bedrooms = int(request.form.get('bedrooms'))
-        bathrooms = int(request.form.get('bathrooms'))
-        distance_city = float(request.form.get('distance_city'))
-        age_years = float(request.form.get('age_years'))
-
-        # prepare input
-        input_query = np.array([[size_m2, bedrooms, bathrooms, distance_city, age_years]])
-
-        # make prediction
-        prediction = ridge_model1.predict(input_query)[0]
-
-        # render template with result
-        return render_template("home.html", results=prediction)
-
-    # GET request → just show the form (empty)
-    return render_template("home.html", results=None)
+model = pickle.load(open(r"notebook\ridge_model.pkl", "rb"))
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+st.title("House Price Prediction using Ridge Regression")
 
+size = st.number_input("Enter size (m²)", min_value=10.0)
+bedrooms = st.number_input("Enter number of bedrooms", min_value=1, step=1)
+bathrooms = st.number_input("Enter number of bathrooms", min_value=1, step=1)
+distance_city = st.number_input("Enter distance to city center (km)", min_value=0.0)
+age_years = st.number_input("Enter age of house (years)", min_value=0.0)
+
+if st.button("Predict"):
+    features = np.array([[size, bedrooms, bathrooms, distance_city, age_years]])
+    prediction = model.predict(features)
+    st.success(f"Predicted Price: {prediction[0]:,.2f} ₹")
