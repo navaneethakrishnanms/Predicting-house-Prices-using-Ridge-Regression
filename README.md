@@ -1,83 +1,83 @@
-# 🏡 Ridge Regression – Predicting House Prices
+House Price Prediction using Ridge Regression
 
-## 📌 Project Overview
-This project focuses on predicting house prices using **regression techniques**.  
-We build and compare **Ordinary Least Squares (OLS)** and **Ridge Regression** models to evaluate which performs better in the presence of **multicollinearity** among features.
+This project is a Machine Learning web app built with Streamlit that predicts house prices based on user inputs such as size, number of bedrooms, bathrooms, distance to the city center, and the age of the house. The model is trained using Ridge Regression.
 
-- **Dataset:** [House Prices Dataset](https://drive.google.com/file/d/1FDbOghfF0PbG7F8T1TNjK2U9c0BzDZTJ/view?usp=sharing)  
-- **Features:**  
-  - `size_m2` – size of the house in square meters  
-  - `bedrooms` – number of bedrooms  
-  - `bathrooms` – number of bathrooms  
-  - `distance_city` – distance from the city center (km)  
-  - `age_years` – age of the property in years  
+🔗 **Live Demo:** [House Price Prediction App](https://predicting-house-prices-using-ridge-regression-4yklzstyqucgn6g.streamlit.app/)
 
-- **Target Variable:**  
-  - `price_k` – house price (in thousands)
 
----
+📌 Features
 
-## 🎯 Problem Statement
-A **real-estate agency** wants to estimate house prices for potential buyers and sellers.  
-However, the dataset contains **highly correlated features** (`size_m2` and `bedrooms`).  
-This can lead to **unstable OLS coefficients** and poor generalization.  
+Simple Streamlit interface for entering house details.
 
-To overcome this, we apply **Ridge Regression**, which adds an L2 penalty to stabilize coefficient estimates.
+Predicts house price instantly using a pre-trained Ridge Regression model.
 
----
+Clean and responsive UI.
 
-## ⚙️ Methodology
+Runs seamlessly on Streamlit Cloud.
 
-1. **Exploratory Data Analysis (EDA)**  
-   - Checked correlations between features  
-   - Identified multicollinearity problem (`size_m2` ↔ `bedrooms`)
+⚙️ How It Works
 
-2. **Modeling Approaches**  
-   - **OLS Regression (Baseline)**: Fits coefficients without penalty  
-   - **Ridge Regression**: Penalizes large coefficients to reduce overfitting and handle collinearity
+Input house details:
 
-3. **Model Evaluation**  
-   - Compared coefficients from OLS vs Ridge  
-   - Evaluated on **R² score** (goodness of fit)  
-   - Analyzed performance on **test data**
+Size (m²)
 
----
+Number of Bedrooms
 
-## 📊 Results
+Number of Bathrooms
 
-- **OLS Regression**
-  - Coefficients were unstable due to multicollinearity  
-  - R² (test): Lower, indicating poor generalization  
+Distance to City Center (km)
 
-- **Ridge Regression**
-  - Coefficients were **shrunken and more stable**  
-  - R² (test): Higher, better generalization to unseen data  
+Age of House (years)
 
----
+Click Predict.
 
-## ✅ Why Ridge Regression is Better Here
-- **OLS Problem:** With highly correlated predictors, OLS assigns exaggerated and unstable coefficients, even if predictive power is low.  
-- **Ridge Solution:** By introducing an **L2 penalty**, Ridge shrinks coefficients of correlated variables together, improving:
-  - **Stability of coefficients**  
-  - **Model interpretability**  
-  - **Generalization performance**  
+The app outputs the predicted house price 💰.
 
-Thus, **Ridge Regression is preferred when predictors are correlated**, as in this real-estate dataset.
+🛠️ Tech Stack
 
----
+Python 3
 
-## 📌 Tech Stack
-- Python  
-- NumPy, Pandas  
-- Scikit-learn (OLS & Ridge regression, evaluation metrics)  
+Streamlit – Web app framework
 
----
-📈 Future Improvements
+NumPy – Numerical computation
 
-Try Lasso Regression for feature selection
+scikit-learn – Ridge Regression model
 
-Experiment with RidgeCV (automatic alpha tuning)
+Pickle – Model serialization
 
-Build a web app for interactive house price prediction
+📂 Project Structure
+├── application.py        # Main Streamlit app
+├── ridge_model.pkl       # Trained Ridge Regression model
+├── requirements.txt      # Dependencies
+└── README.md             # Project documentation
 
-# House-price-prediction-end-to-end-project
+🚀 Run Locally
+
+Clone the repository and run the app locally:
+
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the Streamlit app
+streamlit run application.py
+
+📸 Screenshots
+App Interface
+![App Screenshot](Screenshot 2025-08-25 122120.png)
+
+📈 Model
+
+The model used is Ridge Regression, a linear regression variant with L2 regularization.
+
+Helps reduce overfitting by penalizing large coefficients.
+
+Trained on a dataset of house prices with features such as size, bedrooms, bathrooms, location distance, and age.
+
+📬 Author
+
+👤 [Your Name]
+🔗 LinkedIn
+ | GitHub
+
+✨ If you found this project useful, don’t forget to star ⭐ the repo!
